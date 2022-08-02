@@ -33,7 +33,6 @@
 
   <ItemGroup>
     <Folder Include="Helps\" />
-    <Folder Include="Service\" />
   </ItemGroup>
 
 

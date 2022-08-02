@@ -1,0 +1,65 @@
+﻿@page "/indexClass"
+@using NET106.Shared.Models
+@using NET106.Shared.ViewModels
+@inject HttpClient httpClient;
+@inject NavigationManager navigation;
+
+@if (_class == null)
+{
+    <div>Loading...</div>
+}
+else
+{
+    <div>
+        <a class="btn btn-primary" href="createClass" >Create</a> 
+    </div>
+    <table class="table table-hover table-striped">
+        <thead>
+
+        <tr>
+            <th>Name</th>
+            <th>SchoolId</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (_class != null && _class.Count() > 0)
+        {
+            @foreach (var x in _class)
+            {
+                <tr>
+                    <td>@x.Name</td>
+                    <td>@x.SchoolId</td>
+                    <td>
+                        <a class="btn btn-primary" href="Edit/@x.Id">Edit</a>
+                        <a type="button" class="btn btn-secondary" onclick="@(() => DeleteItem(x.Id))">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<ClassViewModel> _class;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _class = await httpClient.GetFromJsonAsync<List<ClassViewModel>>("/api/Class");
+    }
+
+    private async Task DeleteItem(int id)
+    {
+        var response = await httpClient.DeleteAsync($"api/Class/{id}");
+
+        if (response.StatusCode != System.Net.HttpStatusCode.NoContent) return;
+
+        var item = _class.First(e => e.Id == id);
+        if (item != null)
+        {
+            _class.Remove(item!);
+            navigation.NavigateTo("/index");
+        }
+        StateHasChanged();
+    }
+}

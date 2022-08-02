@@ -1,0 +1,45 @@
+﻿@page "/createClass"
+@using NET106.Shared.ViewModels
+@using NET106.Shared.Models
+@inject HttpClient httpClient;
+@inject NavigationManager navigation;
+
+<EditForm OnValidSubmit="@Submit" Model="cls" method="post">
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input @bind-value="cls.Name" class="form-control"/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="">
+        <label asp-for="SchoolId"></label>
+
+        <InputSelect class="form-control" @bind-Value="cls.SchoolId" >
+            @foreach (var item in Schools)
+            {
+                <option value="@item.Id">@item.Id</option>
+            }
+        </InputSelect>
+    </div>
+
+    <button class="btn btn-success mt-3" type="submit">Create</button>
+</EditForm>
+
+@code {
+    private ClassViewModel cls = new ClassViewModel();
+    private List<School> Schools = new List<School>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Schools = await httpClient.GetFromJsonAsync<List<School>>("api/School");
+    }
+
+    public async Task Submit()
+    {
+        var create = await httpClient.PostAsJsonAsync("api/class", cls);
+        if (create.IsSuccessStatusCode)
+        {
+            navigation.NavigateTo("/indexClass");
+        }
+    }
+}

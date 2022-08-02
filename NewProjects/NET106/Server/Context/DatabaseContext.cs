@@ -40,7 +40,7 @@ namespace NET106.Server.Context
         public DbSet<Branch> Branchs { get; set; }
         public DbSet<Subjects> Subjects { get; set; }
         public DbSet<Students> Students { get; set; }
-        public DbSet<Class> Classs { get; set; }
+        public DbSet<Class> Class { get; set; }
         public DbSet<StudentSubject> StudentSubject { get; set; }
     }
 }

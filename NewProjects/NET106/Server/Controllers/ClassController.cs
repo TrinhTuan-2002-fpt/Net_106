@@ -1,124 +1,110 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NET106.Server.Context;
+using NET106.Server.Service;
 using NET106.Shared.Models;
+using NET106.Shared.ViewModels;
 
 namespace NET106.Server.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/class")]
+    [Authorize]
     public class ClassController : ControllerBase
     {
         private readonly DatabaseContext _context;
+        private readonly ISerrvice<ClassViewModel> _service;
 
-        public ClassController(DatabaseContext context)
+        public ClassController(DatabaseContext context, ISerrvice<ClassViewModel> service)
         {
             _context = context;
+            _service = service;
         }
 
         // GET: api/Class
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Class>>> GetClasss()
+        public async Task<IActionResult> GetClasss()
         {
-          if (_context.Classs == null)
-          {
-              return NotFound();
-          }
-            return await _context.Classs.ToListAsync();
+            var cls = await _context.Class.Include(c => c.SchoolId).ToListAsync();
+            var model = cls.Select(c => new ClassViewModel
+            {
+                Id = c.Id,
+                SchoolId = c.SchoolId,
+                Name = c.Name,
+                School = c.School.Name
+            });
+            return Ok(model);
         }
 
         // GET: api/Class/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Class>> GetClass(int id)
+        public async Task<ActionResult<ClassViewModel>> GetClass(int id)
         {
-          if (_context.Classs == null)
-          {
-              return NotFound();
-          }
-            var @class = await _context.Classs.FindAsync(id);
-
-            if (@class == null)
+            var cls = await _context.Class.FindAsync(id);
+            if (cls == null) return NotFound();
+            return Ok(new ClassViewModel
             {
-                return NotFound();
-            }
-
-            return @class;
+                Id = cls.Id,
+                SchoolId = cls.SchoolId,
+                Name = cls.Name,
+                School = cls.School.Name
+            });
         }
 
-        // PUT: api/Class/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/Class/
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClass(int id, Class @class)
+        public async Task<IActionResult> PutClass(int id, ClassViewModel model)
         {
-            if (id != @class.Id)
-            {
-                return BadRequest();
-            }
+            if (_context.Class == null) return Problem("class null");
 
-            _context.Entry(@class).State = EntityState.Modified;
+            if (!ModelState.IsValid) return BadRequest(model);
 
-            try
+            var cls = await _context.Class.FindAsync(id);
+            if (cls == null) return NotFound($"{id} not found");
+            cls.Name = model.Name;
+            cls.SchoolId = model.SchoolId;
+            _ = _context.Class.Update(cls);
+            await _context.SaveChangesAsync();
+            return Ok(new ClassViewModel
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClassExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+                Id = cls.Id,
+                SchoolId = cls.SchoolId,
+                Name = cls.Name,
+                School = cls.School.Name
+            });
         }
 
         // POST: api/Class
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Class>> PostClass(Class @class)
+        public async Task<IActionResult> PostClass(ClassViewModel model)
         {
-          if (_context.Classs == null)
+          if (_context.Class == null) return Problem("Entity set 'DatabaseContext.Classs'  is null.");
+          if (!ModelState.IsValid) return BadRequest((ModelState));
+          var cls = new Class
           {
-              return Problem("Entity set 'DatabaseContext.Classs'  is null.");
-          }
-            _context.Classs.Add(@class);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetClass", new { id = @class.Id }, @class);
+              Id = model.Id,
+              Name = model.Name,
+              SchoolId = model.SchoolId
+          };
+          await _context.Class.AddAsync(cls);
+          await _context.SaveChangesAsync();
+          return CreatedAtAction("GetClass", new { id = cls.Id }, cls);
         }
 
         // DELETE: api/Class/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClass(int id)
         {
-            if (_context.Classs == null)
-            {
-                return NotFound();
-            }
-            var @class = await _context.Classs.FindAsync(id);
-            if (@class == null)
-            {
-                return NotFound();
-            }
+            if (_context.Class == null) return Problem("class null");
+            if (!ModelState.IsValid) return BadRequest((ModelState));
+            var cls = await _context.Class.FindAsync(id);
+            if (cls == null) return NotFound($"{id} not found");
 
-            _context.Classs.Remove(@class);
+            _context.Class.Remove(cls);
             await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
-
-        private bool ClassExists(int id)
-        {
-            return (_context.Classs?.Any(e => e.Id == id)).GetValueOrDefault();
+            return Ok();
         }
     }
 }

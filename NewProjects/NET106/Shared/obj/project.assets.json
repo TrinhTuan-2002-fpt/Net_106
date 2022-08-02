@@ -739,19 +739,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\trinh\\.nuget\\packages\\": {}
+    "C:\\Users\\hieup\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\c#6\\NewProjects\\NewProjects\\NET106\\Shared\\NET106.Shared.csproj",
+      "projectUniqueName": "D:\\Net_106\\NewProjects\\NET106\\Shared\\NET106.Shared.csproj",
       "projectName": "NET106.Shared",
-      "projectPath": "D:\\c#6\\NewProjects\\NewProjects\\NET106\\Shared\\NET106.Shared.csproj",
-      "packagesPath": "C:\\Users\\trinh\\.nuget\\packages\\",
-      "outputPath": "D:\\c#6\\NewProjects\\NewProjects\\NET106\\Shared\\obj\\",
+      "projectPath": "D:\\Net_106\\NewProjects\\NET106\\Shared\\NET106.Shared.csproj",
+      "packagesPath": "C:\\Users\\hieup\\.nuget\\packages\\",
+      "outputPath": "D:\\Net_106\\NewProjects\\NET106\\Shared\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\trinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hieup\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -759,7 +759,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "http://api.nuget.org/v3/index.json": {},
+        "https://packagesource": {}
       },
       "frameworks": {
         "net6.0": {
@@ -797,7 +798,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,0 +1,45 @@
+﻿@page "/EditClass/{Id:int}"
+@using NET106.Shared.Models
+@using NET106.Shared.ViewModels
+@inject HttpClient httpClient;
+@inject NavigationManager navigation;
+
+<EditForm>
+    <h3 class="text-center">Cập nhật</h3>
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input @bind-value="_class.Name" class="form-control"/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="">
+        <label asp-for="SchoolId"></label>
+
+        <InputSelect class="form-control" @bind-Value="_class.SchoolId" >
+            @foreach (var item in Schools)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </InputSelect>
+    </div>
+</EditForm>
+
+@code {
+    private ClassViewModel _class = new ClassViewModel();
+    private List<School> Schools = new List<School>();
+
+    [Parameter]
+    public int Id { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Schools = await httpClient.GetFromJsonAsync<List<School>>("/api/School");
+    }
+    private async Task Submit()
+    {
+        var response = await httpClient.PutAsJsonAsync($"api/class/{Id}", _class);
+    
+        if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+            navigation.NavigateTo("/indexClass");
+    }
+}

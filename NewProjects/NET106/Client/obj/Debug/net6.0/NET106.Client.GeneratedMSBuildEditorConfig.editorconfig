@@ -1,0 +1,75 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = browser
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = true
+build_property.IncludeAllContentForSelfExtract = 
+build_property.RootNamespace = NET106.Client
+build_property.RootNamespace = NET106.Client
+build_property.ProjectDir = d:\Net_106\NewProjects\NET106\Client\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = d:\Net_106\NewProjects\NET106\Client
+build_property._RazorSourceGeneratorDebug = 
+
+[d:/Net_106/NewProjects/NET106/Client/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Net_106/NewProjects/NET106/Client/Pages/Auth/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxMb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Net_106/NewProjects/NET106/Client/Pages/Auth/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxSZWdpc3Rlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Net_106/NewProjects/NET106/Client/Pages/Class/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3NcQ3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Net_106/NewProjects/NET106/Client/Pages/Class/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3NcRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Net_106/NewProjects/NET106/Client/Pages/Class/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3NcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Net_106/NewProjects/NET106/Client/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Net_106/NewProjects/NET106/Client/Pages/School/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2Nob29sXENyZWF0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Net_106/NewProjects/NET106/Client/Pages/School/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2Nob29sXEVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Net_106/NewProjects/NET106/Client/Pages/School/SchoolComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2Nob29sXFNjaG9vbENvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Net_106/NewProjects/NET106/Client/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Net_106/NewProjects/NET106/Client/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Net_106/NewProjects/NET106/Client/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-cigrd9be9u
+
+[d:/Net_106/NewProjects/NET106/Client/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-s4w7ma4n3g
